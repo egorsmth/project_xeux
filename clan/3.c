@@ -1,40 +1,19 @@
 #include <stdio.h>
 
-int is_prime(long n) {
-     if (n <= 3) {
-        return n > 1;
-     } else if (n % 2 == 0 || n % 3 == 0) {
-        return 0;
-     }
-
-     long i = 5;
-     while (i * i <= n) {
-        if (n % i == 0 || n % (i + 2) == 0) {
-            return 0;
-        }
-        i += 6;
-     }
-     return 1;
-}
-
 int main() {
-  long n = 13195;
-  if (is_prime(n)) {
-     printf("%ld", n);
-     return n;
-  }
-  long i = 2;
+  long n = 600851475143;
+
+  long b = 2;
   
-  while ((int)n/2 != i) {
-    if (n % i != 0) {
-      i += 1;
-      continue;
+  long m = 1;
+  while (n > 1) {
+    if (n % b == 0) {
+      n = n / b;
+      if (b > m) m = b;
+    } else {
+      b += 1;
     }
-    if (is_prime(n/i)) {
-      printf("%ld", n/2);
-      return n/i;
-    }
-    i+=1;
   }
-  return -1;
+ 
+  printf("%ld", m);
 }
